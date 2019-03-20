@@ -9,23 +9,36 @@
           </div>
         </div>
       
-        <div class="row">
+        <div class="row custom_row_margin">
           <div class="col-md-3 weather_block" v-for="item in weatherData" :key="item.id">
+            <div class="card custom_card">
+              <div class="card-header card_header_custom">
+                <h3 class="card_header_custom__title">{{item.name}}</h3>
+              </div>
+              <div class="card-body card_custom_body ">
+                <h4>{{item.weather[0].main}}</h4>
+                <img :src="'http://openweathermap.org/img/w/' +  item.weather[0].icon  + '.png'" />
 
-            <h3 class="weather_block__title">{{item.name}}</h3>
+                <div class="card_custom_body__temperature">
 
-            <div class="weather_block__weather">{{item.weather[0].main}}</div>
-            
-            temperature <font-awesome-icon icon="thermometer-half" fixed-width /> {{item.main.temp}}
-            min <font-awesome-icon icon="temperature-low" fixed-width />{{item.main.temp_min}}
-            humidity <font-awesome-icon icon="temperature-high" fixed-width /> {{item.main.temp_max}}
-            {{item.main.humidity}}
+                  
+                  <font-awesome-icon icon="thermometer-half" /> <span class="temperature_number">{{ item.main.temp  | round }}</span> &#8451;
+                </div>
 
-            <img :src="'http://openweathermap.org/img/w/' +  item.weather[0].icon  + '.png'" />
+                <div class="card_custom_body__additional">
+                  min <font-awesome-icon icon="temperature-low" fixed-width />{{item.main.temp_min}}
+                  max <font-awesome-icon icon="temperature-high" fixed-width /> {{item.main.temp_max}}
+                  humid <font-awesome-icon icon="tint" fixed-width />{{item.main.humidity}}
+                </div>
 
-            <a class="btn btn-primary" @click='setWidgetData(item.id, item.name)'>test</a>
+here{{ $store.getters.fahrenheit }}
+
+
+                <a class="btn btn-primary" @click='setWidgetData(item.id, item.name)'>test</a></div> 
+              </div>
           </div>
         </div>
+
         <DetailView />
     </div>
   </div>
@@ -40,14 +53,20 @@ export default {
   data() {
     return {
       weatherData: "",
-      singleWeatherData: "",
-      singleWeatherArray: [],
-      singleCityName: "",
       errored: false
     }
   },
     components: {
       DetailView
+  },
+  filters: {
+    round: function (value) {
+      if (!value) {
+        return ''
+      }
+
+      return Math.round(value)
+    }
   },
   methods: {
     setWidgetData: function(id, cityName) 
@@ -72,7 +91,50 @@ export default {
   }
 }
 </script>
+;
+<style lang="scss" scoped>
+  .custom_row_margin {
+    margin: 15px 0;
+  }
+  .weather_block {
+    margin: 15px 0;
+  }
+  
+  .custom_card {
+    -webkit-box-shadow: 0px 0px 23px -3px rgba(0,0,0,0.17);
+    -moz-box-shadow: 0px 0px 23px -3px rgba(0,0,0,0.17);
+    box-shadow: 0px 0px 23px -3px rgba(0,0,0,0.17);
+    border: 0;
+    text-align: center;
 
-<style scoped>
+    .card_header_custom {
+      background-color: $orange;
+
+      &__title {
+        color: $black;
+      }
+    }
+
+    .card_custom_body {
+      background: $gray;
+      color: $black;
+      
+      &__temperature {
+        display: flex;
+        justify-content: center;
+
+        svg {
+          font-size: 1.4rem;
+          align-self: center;
+          margin-right: 5px;
+        }
+
+        .temperature_number {
+          font-size: 3rem;
+          line-height: 3rem;
+        }
+      }
+    }
+  }
 
 </style>

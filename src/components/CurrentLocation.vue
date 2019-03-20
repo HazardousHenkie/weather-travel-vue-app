@@ -69,11 +69,12 @@ export default {
 
 <style lang="scss" scoped>
   .current_location {
-    background-color: #ff8d00;
+    background-color: $orange;
+    border-bottom: 1px solid $gray;
 
     &__title {
       font-size: 1rem;
-  //    color: $white;
+      color: $white;
     }
   
   }

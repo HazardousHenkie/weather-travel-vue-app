@@ -8,7 +8,7 @@
       <transition name="fade" mode="out-in">
       <div v-show="singleWeatherData" key="one">
           test
-         {{ $store.getters.cityName }}
+         {{ clickedCity }}
 
 
 
@@ -39,27 +39,30 @@ export default {
   },
    computed: {
     clickedId () {
-      return this.$store.getters.clickedId 
+      return this.$store.state.clickedId 
+    },
+    clickedCity () {
+      return this.$store.state.cityName 
     }
   },
    watch: {
     clickedId: function (cityId) {
-      this.openWidget(cityId, this.singleCityName)
+      this.openWidget(cityId, this.clickedCity)
     }
   },
   methods: {
     openWidget: function(id, cityName) 
     {
       if(this.singleWeatherArray[cityName] !== undefined) {
+        console.log("here")
         this.singleWeatherData = this.singleWeatherArray[cityName]
-        this.singleCityName = cityName
       }
       else {
         axios.get('https://api.openweathermap.org/data/2.5/forecast?id=' + id + '&appid=442885e71a45358b44c91f4c3f89be34')
         .then(response => {
+          console.log("here 2")
           this.singleWeatherArray[response.data.city.name] = response.data
           this.singleWeatherData = response.data
-          this.singleCityName = response.data.city.name
         })
         .catch(error => {
             console.log(error)

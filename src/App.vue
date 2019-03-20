@@ -5,17 +5,21 @@
         <ul class="navbar-nav">
         
         </ul>
+
+           <a class="btn btn-primary" @click='setFahrenheit()'>test</a>
       </div>
     </nav>
 
     <CurrentLocation />
     <List />
+    <SearchLocation />
   </div>
 </template>
 
 <script>
 import CurrentLocation from './components/CurrentLocation.vue';
 import List from './components/List.vue';
+import SearchLocation from './components/SearchLocation.vue';
 
 export default {
   name: 'app',
@@ -26,12 +30,19 @@ export default {
   },
   components: {
     CurrentLocation,
-    List
+    List,
+    SearchLocation
+  },
+  methods: {
+    setFahrenheit: function() 
+    {
+      this.$store.commit('changeToFahrenheit', true)
+    }
   }
 }
 </script>
 
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>

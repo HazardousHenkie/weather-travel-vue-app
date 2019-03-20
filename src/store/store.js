@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
     state: {
         cityName: "",
-        clickedId: ""
+        clickedId: "",
+        fahrenheit: false
       },
       mutations: {
         changeCityName(state, cityName) {
@@ -14,10 +15,12 @@ export const store = new Vuex.Store({
         },
         changeClickedId(state, clickedId) {
             state.clickedId = clickedId
+        },
+        changeToFahrenheit(state, fahrenheit) {
+          state.fahrenheit = fahrenheit
         }
       },
       getters: {
-        cityName: state => state.cityName,
-        clickedId: state => state.clickedId
+        fahrenheit: state => state.fahrenheit
       }
 })
