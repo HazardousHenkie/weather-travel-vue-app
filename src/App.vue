@@ -1,28 +1,37 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark custom-navbar-style">
+      <div class="container">
+        <ul class="navbar-nav">
+        
+        </ul>
+      </div>
+    </nav>
+
+    <CurrentLocation />
+    <List />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import CurrentLocation from './components/CurrentLocation.vue';
+import List from './components/List.vue';
 
 export default {
   name: 'app',
+  data() {
+    return {
+     
+    };
+  },
   components: {
-    HelloWorld
+    CurrentLocation,
+    List
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
+<style scoped>
+
 </style>
