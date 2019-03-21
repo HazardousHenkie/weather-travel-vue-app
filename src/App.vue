@@ -3,36 +3,26 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark custom-navbar-style">
       <div class="container">
         <ul class="navbar-nav">
-        
+          <li class="nav-item active">
+            <router-link to="/" class="nav-link">home</router-link>
+          </li>
+          <li class="nav-item">
+             <router-link to="/about" class="nav-link">About</router-link>
+          </li>
         </ul>
 
-           <a class="btn btn-primary" @click='setFahrenheit()'>test</a>
+        <a class="btn btn-primary" @click='setFahrenheit()'>test</a>
       </div>
     </nav>
 
-    <CurrentLocation />
-    <List />
-    <SearchLocation />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import CurrentLocation from './components/CurrentLocation.vue';
-import List from './components/List.vue';
-import SearchLocation from './components/SearchLocation.vue';
 
 export default {
   name: 'app',
-  data() {
-    return {
-     
-    };
-  },
-  components: {
-    CurrentLocation,
-    List,
-    SearchLocation
-  },
   methods: {
     setFahrenheit: function() 
     {

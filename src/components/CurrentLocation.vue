@@ -1,6 +1,6 @@
 <template>
     <div id="CurrentLocation" class="current_location">
-        <div class="container">
+        <div class="fluid-container orange-background">
             <section v-if="errored">
               <p>We're sorry, we're not able to retrieve this information at the moment, please try again later.</p>
             </section>

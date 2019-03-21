@@ -1,9 +1,10 @@
 module.exports = {
-    css: {
-      loaderOptions: {
-        sass: {
-          data: `@import "@/styles/_resources.scss";`
-        }
+ // publicPath: "<weather-travel>",
+  css: {
+    loaderOptions: {
+      sass: {
+        data: `@import "@/styles/resources.scss";`
       }
     }
-  };
+  }
+};
