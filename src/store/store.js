@@ -7,7 +7,8 @@ export const store = new Vuex.Store({
     state: {
         cityName: "",
         clickedId: "",
-        fahrenheit: false
+        fahrenheit: false,
+        fahrenheitText: "C"
       },
       mutations: {
         changeCityName(state, cityName) {
@@ -18,9 +19,13 @@ export const store = new Vuex.Store({
         },
         changeToFahrenheit(state, fahrenheit) {
           state.fahrenheit = fahrenheit
+        },
+        changeFahrenheitText(state, fahrenheitText) {
+          state.fahrenheitText = fahrenheitText
         }
       },
       getters: {
-        fahrenheit: state => state.fahrenheit
+        fahrenheit: state => state.fahrenheit,
+        fahrenheitText: state => state.fahrenheitText,
       }
 })

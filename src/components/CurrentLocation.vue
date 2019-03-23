@@ -1,81 +1,89 @@
 <template>
-    <div id="CurrentLocation" class="current_location">
-        <div class="fluid-container orange-background">
-            <section v-if="errored">
-              <p>We're sorry, we're not able to retrieve this information at the moment, please try again later.</p>
-            </section>
-
-            <h2>Current weather forecast for current city</h2>
-
-            <h3 class="current_location__title">
-              {{ currentLocation.name }}
-            </h3>
-
-            <div class="current_location__information">
-              {{ currentLocation.main && currentLocation.main.temp }}°C
-              {{ currentLocation.weather && currentLocation.weather[0].main }}
-            </div>
-
-           
-             
-            <div v-show="geolocationError">
-                {{ geolocationError }}
-
-            </div>
+  <div id="CurrentLocation" class="single_location blue-background">
+    <div class="fluid-container">
+      <div v-if="!errored">
+        <div class="single_location__date">
+          {{ new Date() | moment("dddd, MMM D") }}
         </div>
+
+        <!-- Don't show this part of data isn't ready yet -->
+        <detailViewSingle v-if="currentLocation && weatherState" :singleLocation="currentLocation" :weatherState="weatherState" />
+
+        <div class="single_location__location_text">       
+          (<font-awesome-icon icon="map-marker-alt" /> current location)
+        </div>
+      </div>
+
+      <div class="container">
+        <section v-if="errored" class="alert alert-danger">
+          <p>{{ errorMessage }}</p>
+        </section>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-import axios from 'axios'
+  import axios from 'axios'
+  import DetailViewSingle from './DetailViewSingle.vue'
 
-export default {
-  name: 'CurrentLocation',
-  data() {
-    return {
-      geolocationError: "",
-      currentLocation: "",
-      errored: false
-    }
-  },
-  methods: {
-    geolocation() {
-      if(navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(position => {
-          axios.get('https://api.openweathermap.org/data/2.5/weather?lat=' + position.coords.latitude + '&lon='  + position.coords.longitude + '&units=metric&appid=442885e71a45358b44c91f4c3f89be34')
-          .then(response => {
-             this.currentLocation = response.data
-          })
-          .catch(error => {
-            console.log(error)
-            this.errored = true
-          })
-        },
-        error => {
-           if (error.code == error.PERMISSION_DENIED) {
-              this.geolocationError = "Gelocation permission wasn't given"
-           } else {
-              this.geolocationError = "Geolocation couldn't be retreived" + error
-           }
-        })
+  export default {
+    name: 'CurrentLocation',
+    data() {
+      return {
+        errorMessage: "",
+        currentLocation: "",
+        errored: false,
+        weatherState: ""
       }
+    },
+    components: {
+      DetailViewSingle
+    },
+    methods: {
+      geolocation() {
+        if(navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(position => {
+            axios.get('https://api.openweathermap.org/data/2.5/weather?lat=' + position.coords.latitude + '&lon='  + position.coords.longitude + '&units=metric&appid=442885e71a45358b44c91f4c3f89be34')
+            .then(response => {
+              this.currentLocation = response.data
+              this.weatherState = response.data.weather[0].main
+            })
+            .catch(error => {
+              console.log(error)
+              this.errored = true
+              this.errorMessage = "We're sorry, we're not able to retrieve this information at the moment, please try again later."
+            })
+          },
+          error => {
+            if (error.code == error.PERMISSION_DENIED) {
+              this.errorMessage = "Gelocation permission wasn't given"
+            } else {
+              this.errorMessage = "Geolocation couldn't be retreived" + error
+            }
+          })
+        }
+      }
+    },
+    beforeMount() {
+      this.geolocation()
     }
-  },
-  beforeMount() {
-    this.geolocation()
   }
-}
 </script>
 
 <style lang="scss" scoped>
-  .current_location {
-    background-color: $orange;
-    border-bottom: 1px solid $gray;
+  .single_location {
+    color: $white;
+    padding: 5px 20px 40px;
 
-    &__title {
-      font-size: 1rem;
-      color: $white;
+    &__location_text {
+      margin-top: 8px;
+      text-align: center;
+      font-size: 0.8rem;
+
+      svg {
+        font-size: 0.7rem;
+      }
     }
-  
   }
 </style>
