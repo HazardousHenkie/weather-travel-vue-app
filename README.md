@@ -28,16 +28,16 @@ yarn run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-###Information
+### Information
 This application aims to provide weather information for first-time travelers to Japan. Where it aims to provide weather information for a few key cities namely: Tokyo, Yokohama, Kyoto, Osaka, Sapporo, Nagoya.
 
-###Information used technologies
+### Information used technologies
 This application has been build using, but not limited too, Vue (Vue CLI), HTML, CSS (SASS) and JavaScript with Yarn as a packagemanager and using ESlint as a lint checker.
 
-###Dependencies
+### Dependencies
 Main dependencies include, among ohter, Vuex, Vue router, Axios, FontAwesome, sass and moment.js
 
-###Design/UI/UX choices
+### Design/UI/UX choices
 This application aims to provide information quickly and orderly.
 It's set up so that the user can flow through the page from top to bottom with different sections that intend to give the user different information
 We start out with a current location section. This section has been added so that a potential traveler already in Japan canWwhat the weather is like and adjust his itinerary for the day accordingly.
