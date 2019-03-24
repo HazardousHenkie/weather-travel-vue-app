@@ -31,7 +31,7 @@ yarn run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Information
-This application aims to provide weather information for first-time travelers to Japan. Where it aims to provide weather information for a few key cities namely: Tokyo, Yokohama, Kyoto, Osaka, Sapporo, Nagoya.
+This application aims to provide weather information for first-time travelers to Japan. Where it aims to provide weather information for a few key cities namely: Tokyo, Yokohama, Kyoto, Osaka, Sapporo and Nagoya.
 
 ### Information used technologies
 This application has been build using, but not limited too, Vue (Vue CLI), HTML, CSS (SASS) and JavaScript with Yarn as a packagemanager and using ESlint as a lint checker.
@@ -42,7 +42,7 @@ Main dependencies include, among ohter, Vuex, Vue router, Axios, FontAwesome, sa
 ### Design/UI/UX choices
 This application aims to provide information quickly and orderly.
 It's set up so that the user can flow through the page from top to bottom with different sections that intend to give the user different information
-We start out with a current location section. This section has been added so that a potential traveler already in Japan canWwhat the weather is like and adjust his itinerary for the day accordingly.
+We start out with a current location section. This section has been added so that a potential traveler already in Japan can see what the weather is like and adjust his/her itinerary for the day accordingly.
           
 The next section shows the 6 popular destinations inside Japan and the current weather for those locations. Only basic information is shown and everything is clean and legible. If a user clicks the block the sections with the 5-day forecast are shown and the user scrolls to that.
 The same block layout, excluding the icons, is used here to give the user a brief overview of the 5-day forecast.
