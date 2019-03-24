@@ -1,5 +1,7 @@
 # weather-travel
 
+https://hazardoushenkie.github.io/weather-travel/
+
 ## Project setup
 ```
 yarn install

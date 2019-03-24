@@ -61,7 +61,7 @@
           VueScrollTo.scrollTo("#detailViewSingle")
       },
       getWeather(searchString) {
-        axios.get('http://api.openweathermap.org/data/2.5/weather?q=' + searchString + '&units=metric&appid=442885e71a45358b44c91f4c3f89be34')
+        axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + searchString + '&units=metric&appid=442885e71a45358b44c91f4c3f89be34')
         .then(response => {
           this.weatherData = response.data
           this.weatherState = response.data.weather[0].main
